@@ -34,10 +34,15 @@ jobs:
 
     - name: Run a multi-line script
       run: |
+        git config --global user.email "ukhobot"
+        git config --global user.name "ukhobot"
         cd module
         project=tfmodule-azure-vnet-with-nsg
         mkdir ../docs/$project
         cp README.md ../docs/$project
+        cd ..\docs
+        git add .
+        git commit -m "Updating $project"
     - name: GitHub Push
       uses: ad-m/github-push-action@v0.5.0
       with:
