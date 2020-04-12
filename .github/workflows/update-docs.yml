@@ -40,7 +40,7 @@ jobs:
         project=tfmodule-azure-vnet-with-nsg
         mkdir ../docs/$project
         cp README.md ../docs/$project
-        cd ..\docs
+        cd ../docs
         git add .
         git commit -m "Updating $project"
     - name: GitHub Push
