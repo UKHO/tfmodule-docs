@@ -1,0 +1,41 @@
+parameters:
+  - project
+  
+jobs:
+  # This workflow contains a single job called "build"
+  update:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: master
+        path: docs
+
+    - name: Checkout ${{ parameters.project }}
+      uses: actions/checkout@v2
+      with:
+        repository: ukho/${{ parameters.project }}
+        ref: master
+        path: module
+
+    - name: Run a multi-line script
+      run: |
+        git config --global user.email "ukhobot"
+        git config --global user.name "ukhobot"
+        cd module
+        project=${{ parameters.project }}
+        mkdir ../docs/$project
+        cp README.md ../docs/$project
+        cd ../docs
+        git add .
+        git commit -m "Updating $project"
+    - name: GitHub Push
+      uses: ad-m/github-push-action@v0.5.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        directory: docs
