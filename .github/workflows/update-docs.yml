@@ -38,7 +38,7 @@ jobs:
         git config --global user.name "ukhobot"
         cd module
         project=tfmodule-azure-vnet-with-nsg
-        mkdir ../docs/$project
+        mkdir -p ../docs/$project
         cp README.md ../docs/$project
         cd ../docs
         git add .
