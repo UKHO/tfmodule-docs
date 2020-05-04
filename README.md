@@ -10,8 +10,4 @@ Creates a vnet with a network security group associated with it's subnets
 
 ## AWS
 
-### [AccountVPCSetup](https://github.com/UKHO/tfmodule-aws-AWS.AccountVPCSetup)
-
-VPC setup for AWS
-
 ## GCP
